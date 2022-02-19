@@ -52,21 +52,22 @@ bool initFlash(Parameters_t *Param)
     int i;
     for(i=0;i<5;i++)
     {
-        if(flash_target_contents[40+i]!=0x78) mismatch++;
+        if(flash_target_contents[40+i]!=0x7f) mismatch++;
     }
     if(mismatch!=0)
     {
         printf("Flash seems not updated before, write with default value\n");
-        Param->rtu_id=0;
+        Param->rtu_id=11;
         Param->writeFlash =0;
         Param->camaraPos1 = 20;
         Param->camaraPos2 = 532;
         Param->camaraPos3 = 1044;
         Param->camaraPos4 = 1556;
-        Param->encoderResolution = 1024;
+        Param->encoderResolution = 2048;
         Param->LED_duration_us =100;
         Param->LED_warmup_us = 5;
-        for(i=0;i<5;i++) P[40+i]=0x78;
+        Param->Camara_delay_us = 10;
+        for(i=0;i<5;i++) P[40+i]=0x7f;
         writeParam(Param);
     }
     // 把 flash rom 裡頭的儲存資料讀回來 Param[]
