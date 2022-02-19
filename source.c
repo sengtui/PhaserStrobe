@@ -28,8 +28,7 @@ void on_encoder_irq(uint gpio, uint32_t events)
     b0 = gpio_get(GPIO_ENCODER_B);
     if(gpio==GPIO_ENCODER_A)
     {
-        if(events==GPIO_IRQ_EDGE_RISE) dir = !b0;
-        if(events==GPIO_IRQ_EDGE_FALL) dir = b0;  
+        dir = (events==GPIO_IRQ_EDGE_RISE)?!b0:b0;  
         dir? encoder++:encoder--;
         dir? spd_c++:spd_c--;
         if(encoder<0) encoder+=ParamMem.encoderResolution;
