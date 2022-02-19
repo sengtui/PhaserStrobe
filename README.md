@@ -50,9 +50,6 @@ typedef struct
     uint16_t RPM;                   //e
     uint16_t AQ0;                   //0xf
     uint16_t AQ1;
-
     uint16_t garbage[128];
 } Parameters_t;
-
-bool writeParam(Parameters_t* Param);
-bool initFlash(Parameters_t * Param);
+`
