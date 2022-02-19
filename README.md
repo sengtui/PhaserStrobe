@@ -1,5 +1,5 @@
-閃頻輸出程式
-
+//閃頻輸出程式
+/*
 rtu uid = 11
 支援 registers write / read 和 coil write
 
@@ -9,7 +9,9 @@ GPIO 和 參數矩陣的設定在 parameters.h
 
 參數可以透過 modbus rtu 設定後， 將 writeFlash(0x01) 以coil 設定（寫入值：0xff00) 就可以寫入 flash 變成預設值。
 為了方便簡陋的自建 modbus rtu server程式，所有參數都是 uint16, 不管什麼東東都是。 coil / holding registers / registers 都是從零開始同一個位置沒有在分的。
+*/
 
+ß
 #define UART_ID uart0
 #define UART_TX_PIN 0       // PIN1
 #define UART_RX_PIN 1       // PIN2
@@ -51,3 +53,6 @@ typedef struct
 
     uint16_t garbage[128];
 } Parameters_t;
+
+bool writeParam(Parameters_t* Param);
+bool initFlash(Parameters_t * Param);
