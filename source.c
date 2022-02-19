@@ -184,27 +184,13 @@ int main()
    
     init();
  
-/* DEBUG*/
-
-    uart_init(uart1, BAUD_RATE);
-    gpio_set_function(4, GPIO_FUNC_UART);
-    gpio_set_function(5, GPIO_FUNC_UART);
-    uart_set_hw_flow(uart1, false, false);
-    uart_set_format(uart1, DATA_BITS, STOP_BITS, PARITY);
-    uart_set_fifo_enabled(uart1, false);
-
-// End of debug
-
     multicore_launch_core1(core1_entry);
-    sleep_ms(50);
 
 // 100mS Timer, 用來計算速度和因為速度造成的補償值
     struct repeating_timer timer;
     spd_c=0;
     add_repeating_timer_ms(-100, on_repeat_timer, NULL, &timer);
 
-// DEBUG: 寫死站號
-ParamMem.rtu_id = 0x11;
 
     while(1)
     {
